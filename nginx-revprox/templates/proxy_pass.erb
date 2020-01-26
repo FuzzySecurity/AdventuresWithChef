@@ -16,6 +16,6 @@ server {
 	location /redirect/ {
 		add_header Pragma "no-cache";
 		add_header Cache-Control "no-cache";
-		proxy_pass http://www.fuzzysecurity.com/; # note the trailing slash!
+		proxy_pass http://www.fuzzysecurity.com/;
 	}
 }
