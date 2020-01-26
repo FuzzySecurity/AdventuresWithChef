@@ -1,0 +1,21 @@
+server {
+	# Listen on port
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	# Web root
+	root /var/www/html;
+	server_name revprox.local;
+
+	# Serve content
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	# Pass "/redirect/" to fuzzysec
+	location /redirect/ {
+		add_header Pragma "no-cache";
+		add_header Cache-Control "no-cache";
+    	proxy_pass http://www.fuzzysecurity.com/; # note the trailing slash!
+	}
+}
